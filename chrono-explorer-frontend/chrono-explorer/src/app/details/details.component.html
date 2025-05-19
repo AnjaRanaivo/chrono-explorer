@@ -1,0 +1,83 @@
+<app-header></app-header>
+<div *ngIf="event" >
+    <div class="event-card position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light" [style.background-image]="'url(' + event.image + ')'">
+        <div class="event-text col-md-5 p-lg-5 mx-auto my-5 bg-light">
+            <h1 class="display-4 font-weight-normal">{{ event.titre }}</h1>
+            <p class="text-muted"><i class="bi bi-calendar-event"></i> {{ event.date | date: 'yyyy-MM-dd' }}</p>
+            <p class="lead font-weight-normal">{{ event.description }}</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row m-4">
+            <div class="col-lg-3 d-flex flex-column justify-content-center align-items-center text-center">
+                <div class="circle-icon mb-2">
+                    <i class="bi bi-geo-alt"></i>
+                </div>
+                <h2>Lieu</h2>
+                <p>{{ event.lieu }}</p>
+            </div>
+            <div class="col-lg-3 d-flex flex-column justify-content-center align-items-center text-center">
+                <div class="circle-icon mb-2">
+                    <i class="bi bi-globe-americas"></i>
+                </div>
+                <h2>Civilisation</h2>
+                <p>{{ event.civilisation }}</p>
+            </div>
+            <div class="col-lg-3 d-flex flex-column justify-content-center align-items-center text-center">
+                <div class="circle-icon mb-2">
+                    <i class="bi bi-palette"></i>
+                </div>
+                <h2>Thématique</h2>
+                <p>{{ event.theme }}</p>
+            </div>
+            <div class="col-lg-3 d-flex flex-column justify-content-center align-items-center text-center">
+                <div class="circle-icon mb-2">
+                    <i class="bi bi-shield-shaded"></i>
+                </div>
+                <h2>Époque</h2>
+                <p>{{ event.periode }}</p>
+            </div>
+        </div>
+        <div class="comments">
+            <h1 class="comments-title">Commentaires ({{this.comments.length}})</h1>
+            <div *ngFor="let comment of comments" class="comment">
+                <div class="img-comment">	
+                    <img src="/user.jpg" alt="" class="avatar">
+                </div>
+                <div class="comment-content">
+			
+                    <span class="comment-name">
+                        {{comment.username}}
+                    </span>
+                    <span class="comment-time">
+                        <i class="bi bi-clock"></i>
+                        {{comment.created_at | date: 'yyyy-MM-dd hh-mm-ss' }}
+                    </span>
+
+                    <p class="comment-text">
+                        {{comment.content}}
+                    </p>
+                </div>
+            </div>
+            <p *ngIf="!isLogged" class="text-muted text-center m-3">Connectez-vous pour laisser un commentaire <a routerLink="/login" class="text-primary ml-1">Se connecter</a></p>
+            <form *ngIf="isLogged" class="form-block m-3">
+                <div class="row">
+                    <div class="col-xs-12">									
+                        <div class="form-group">
+                            <textarea [(ngModel)]="commentContent" name="commentContent" class="form-input" placeholder="Votre Commentaire"></textarea>
+                        </div>
+                    </div>
+                    <button (click)="submitComment()" class="btn btn-secondary pull-right"><i class="bi bi-send"></i> Envoyer</button>
+                </div>
+                <div *ngIf="success" class="alert alert-success mt-2">{{ success }}</div>
+                <div *ngIf="error" class="alert alert-danger mt-2">{{ error }}</div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!event" class="text-center mt-5 text-muted">
+  <p><i class="bi bi-exclamation-circle"></i> Aucun événement sélectionné.</p>
+</div>
+
+<app-footer></app-footer>

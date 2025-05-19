@@ -1,0 +1,11 @@
+<header class="header">
+    <img src="/images/logo.jpg" class="logo"/>
+  <nav class="nav-links">
+    <a routerLink="/">Accueil</a>
+    <a routerLink="/lignetemps">Ligne du temps</a>
+    <a *ngIf="isLogged" routerLink="/favoris">Mes Favoris</a>
+    <a *ngIf="isAdmin" routerLink="/adminComment">Admin Comment</a>
+    <a *ngIf="!isLogged" routerLink="/login"><i class="bi bi-person"></i></a>
+    <a *ngIf="isLogged" (click)="logout()" style="cursor: pointer;"><i class="bi bi-box-arrow-left"></i> Se Déconnecter</a>
+  </nav>
+</header>

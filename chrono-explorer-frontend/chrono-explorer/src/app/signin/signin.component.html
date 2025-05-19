@@ -1,0 +1,61 @@
+<app-header></app-header>
+<div id="main-wrapper" class="container my-4 py-4">
+    <div class="row justify-content-center">
+        <div class="col-xl-10">
+            <div class="card border-0">
+                <div class="card-body p-0">
+                    <div class="row no-gutters">
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="mb-5">
+                                    <h3 class="h4 font-weight-bold text-secondary">Inscription</h3>
+                                </div>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="username">Nom d'utilisateur</label>
+                                        <input type="text" [(ngModel)]="user.username" class="form-control" name="username">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Adresse e-mail</label>
+                                        <input type="email" [(ngModel)]="user.email" class="form-control" name="email">
+                                    </div>
+                                    <div class="form-group mb-5">
+                                        <label for="password">Mot de passe</label>
+                                        <input type="password" [(ngModel)]="user.password" class="form-control" name="password">
+                                    </div>
+                                    <button type="submit" class="btn btn-secondary" (click)="register()">S’inscrire</button>
+
+                                    <div *ngIf="error" class="alert alert-danger mt-2" role="alert">
+                                        {{ error }}
+                                    </div>
+                                    <div *ngIf="success" class="alert alert-success mt-2" role="alert">
+                                        {{ success }} <span class="points"></span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 d-none d-lg-inline-block">
+                            <div class="account-block rounded-right">
+                                <div class="overlay rounded-right"></div>
+                                <div class="account-testimonial">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- end card-body -->
+            </div>
+            <!-- end card -->
+
+            <p class="text-muted text-center mt-3 mb-0">Vous avez déjà un compte? <a routerLink="/login" class="text-primary ml-1">Se connecter</a></p>
+
+            <!-- end row -->
+
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- Row -->
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,25 @@
+<app-header></app-header>
+<section class="search-container">
+  <h2>Recherche d'événements</h2>
+
+  <form class="search-form">
+    <input type="date" placeholder="Date (ex: 476)" [(ngModel)]="filters.date" name="date" />
+    <input type="text" placeholder="Lieu" [(ngModel)]="filters.lieu" name="lieu" />
+    <input type="text" placeholder="Civilisation" [(ngModel)]="filters.civilisation" name="civilisation" />
+    <input type="text" placeholder="Thématique" [(ngModel)]="filters.theme" name="theme" />
+  </form>
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div class="col" *ngFor="let event of filteredEvents">
+        <div class="event-card card shadow-sm">
+            <img class="card-img-top" [src]="event.image" alt="card image"/>
+            <div class="card-body">
+                <h5 class="card-title">{{ event.titre }}</h5>
+                <p class="card-text">{{ event.description }}</p>
+                <a [routerLink]="['/details', event.id]" class="btn btn-secondary">Voir plus</a>
+            </div>
+        </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

@@ -1,0 +1,22 @@
+.partners {
+  /*background-color: #f3e8cd;*/
+  background-color: black;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: bold;
+  text-align: center;
+  /*bottom: 0;
+  position: fixed;
+  width: 100%;*/
+}
+
+.greek-logo {
+  font-family: 'Times New Roman', serif;
+  font-size: 0.9rem;
+}
+
+.partenaire {
+    height: 35px;
+}

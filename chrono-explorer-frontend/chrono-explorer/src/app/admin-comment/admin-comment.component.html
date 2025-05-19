@@ -1,0 +1,45 @@
+<app-header></app-header>
+<div class="container bootstrap snippets bootdey p-4">
+    <div class="row">
+        <div class="panel panel-default widget">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-comment"></span>
+                <h3 class="panel-title">
+                    Commentaires à valider</h3>
+                <span class="label label-info">
+                    {{comments.length}}</span>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li *ngFor="let comment of comments" class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-2 col-md-1">
+                                <img src="/user.jpg" class="img-circle img-responsive img-user" alt="" /></div>
+                            <div class="col-xs-10 col-md-11">
+                                <div>
+                                    <a [routerLink]="['/details', comment.event_id]">
+                                        {{comment.title}}</a>
+                                    <div class="mic-info">
+                                        Par: <a href="#">{{comment.username}}</a> le {{comment.created_at | date: 'yyyy-MM-dd hh-mm-ss' }}
+                                    </div>
+                                </div>
+                                <div class="comment-text">
+                                    {{comment.content}}
+                                </div>
+                                <div class="action">
+                                    <button type="button" class="btn btn-success" (click)="valider(comment.id)" title="Approved" style="width:15%; padding: 0">
+                                        <i class="bi bi-check"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger" (click)="supprimer(comment.id)" title="Rejected" style="width:15%; padding: 0">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

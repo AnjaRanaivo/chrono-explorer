@@ -1,0 +1,50 @@
+<app-header></app-header>
+
+<div class="timeline-header text-center my-4">
+  <h2>Explorez la chronologie</h2>
+  <p class="timeline-hint">⟵ Faites défiler pour découvrir les événements historiques ⟶</p>
+</div>
+
+<form class="search-form m-4">
+    <input type="date" placeholder="Date (ex: 476)" [(ngModel)]="filters.date" name="date" />
+    <input type="text" placeholder="Lieu" [(ngModel)]="filters.lieu" name="lieu" />
+    <input type="text" placeholder="Civilisation" [(ngModel)]="filters.civilisation" name="civilisation" />
+    <input type="text" placeholder="Thématique" [(ngModel)]="filters.theme" name="theme" />
+</form>
+
+<!-- <section id="timeline">
+
+  <div class="tl-item" *ngFor="let event of events">
+    <div class="tl-bg" [ngStyle]="{'background-image': 'url(' + event.image + ')'}"></div>
+    
+    <div class="tl-year">
+      <p class="f2 heading--sanSerif">{{ event.date }}</p>
+    </div>
+
+    <div class="tl-content">
+      <h1 class="f3 text--accent ttu">{{ event.titre }}</h1>
+      <p>
+        {{ event.description }}
+      </p>
+      <a [routerLink]="['/details', event.id]" class="event-link">Voir plus</a>
+    </div>
+  </div>
+</section> -->
+
+<div class="timeline">
+  <div class="container" [ngClass]="i % 2 === 0 ? 'left' : 'right'" *ngFor="let event of filteredEvents; let i = index" >
+    <div class="date">{{event.date | date: 'yyyy-MM-dd' }}</div>
+    <i class="icon bi bi-shield"></i>
+    <div class="content" [ngStyle]="{'background-image': 'url(' + event.image + ')'}">
+        <div class="detail">
+            <h2>{{ event.titre }} <span *ngIf="isFavori(event.id)" title="Favori">⭐⭐⭐</span></h2>
+            <p>
+                {{ event.description }}
+            </p>
+        </div>
+      <a [routerLink]="['/details', event.id]" class="event-link btn btn-secondary">Voir plus</a>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
